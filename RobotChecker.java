@@ -23,9 +23,13 @@ public class RobotChecker {
 
         while (!components.isEmpty()) {
             String component = components.remove();
+            boolean passed;
 
-            // Simulate an 80% chance of passing.
-            boolean passed = random.nextInt(100) < 80;
+            if (component.equals("Battery")) {
+                passed = checkBattery();
+            } else {
+                passed = random.nextInt(100) < 80;
+            }
 
             if (passed) {
                 System.out.println(component + ": PASS");
@@ -37,6 +41,23 @@ public class RobotChecker {
         }
 
         return allPassed;
+    }
+
+    private boolean checkBattery() {
+        int batteryLevel = random.nextInt(101);
+
+        System.out.println("Battery level: " + batteryLevel + "%");
+
+        if (batteryLevel < 20) {
+            System.out.println("CRITICAL: Battery is too low!");
+            return false;
+        } else if (batteryLevel < 50) {
+            System.out.println("WARNING: Low battery!");
+            return true;
+        } else {
+            System.out.println("Battery level is normal.");
+            return true;
+        }
     }
 
     private String getSolution(String component) {
