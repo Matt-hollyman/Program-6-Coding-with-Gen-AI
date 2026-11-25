@@ -41,6 +41,8 @@ public class RobotDriver {
         }
 
         System.out.println("\n=== Mission: Save the Earth ===");
+        WeaponInventory inventory = new WeaponInventory();
+        inventory.displayInventory();
 
         while (true) {
             boolean success = robot.checkRobot();
